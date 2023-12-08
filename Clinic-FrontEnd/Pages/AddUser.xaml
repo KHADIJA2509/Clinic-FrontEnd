@@ -1,0 +1,273 @@
+﻿<Page x:Class="Clinic_FrontEnd.Pages.AddUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Clinic_FrontEnd.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1500"
+      Title="AddUser">
+
+
+    <Grid Background="#F6F6F8">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+
+        <Button  Content="Add User" FontSize="15" Foreground="#FFFFFF" FontFamily="Arial" Height="35" Width="160" Margin="0,600,0,0">
+            <Button.Background>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0.5,1">
+                    <GradientStop Color="#FF19C0D4" Offset="0" />
+                    <GradientStop Color="#FF053787" Offset="1" />
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Margin="0,0,0,6">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#28AEED"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <materialDesign:PackIcon Margin="0,60,0,0" Kind="UserCircleOutline" Height="150" Width="150" HorizontalAlignment="Center">
+            <materialDesign:PackIcon.Foreground>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0.5,1">
+                    <GradientStop Color="#FF19C0D4" Offset="0" />
+                    <GradientStop Color="#FF053787" Offset="1" />
+                </LinearGradientBrush>
+            </materialDesign:PackIcon.Foreground>
+        </materialDesign:PackIcon>
+
+        <StackPanel Margin="150,210,825,0" VerticalAlignment="Top" Height="460">
+
+            <TextBlock Text="User Type" Margin="0,30,0,5" FontWeight="Bold" FontSize="16"/>
+            <ComboBox x:Name="ComboBox1" Height="30" Background="White">
+
+                <ComboBoxItem Background="White" Foreground="#0B4B6E"   
+FontFamily="Verdana" FontSize="12" FontWeight="Bold">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="AccountTie" Margin="0,0,15,0" Foreground="#0B4B6E" />
+                        <TextBlock Text="Owner" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ComboBoxItem>
+
+                <ComboBoxItem Background="White" Foreground="#0B4B6E"   
+FontFamily="Verdana" FontSize="12" FontWeight="Bold">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Doctor" Margin="0,0,15,0" Foreground="#0B4B6E" />
+                        <TextBlock Text="Doctor"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Background="White" Foreground="#0B4B6E"   
+FontFamily="Verdana" FontSize="12" FontWeight="Bold">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Account" Margin="0,0,15,0" Foreground="#0B4B6E" />
+                        <TextBlock Text="Reseption"/>
+                    </StackPanel>
+                </ComboBoxItem>
+            </ComboBox>
+            <TextBlock Text="First Name" Margin="0,30,0,5"  FontWeight="Bold" FontSize="16"/>
+            <TextBox  Text="" Height="30">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Grid>
+                                        <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                                        <TextBlock x:Name="PlaceholderText" Text="Enter your First Name" Foreground="Gray" Margin="5,0" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ScrollViewer x:Name="PART_ContentHost"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=Self}}" Value="">
+                                            <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBlock Text="Last Name" Margin="0,30,0,5"  FontWeight="Bold" FontSize="16"/>
+            <TextBox  Text="" Height="30">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Grid>
+                                        <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                                        <TextBlock x:Name="PlaceholderText" Text="Enter your Last Name " Foreground="Gray" Margin="5,0" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ScrollViewer x:Name="PART_ContentHost"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=Self}}" Value="">
+                                            <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBlock Text="Birth Date" Margin="0,30,0,5" FontWeight="Bold" FontSize="16" />
+            <DatePicker x:Name="datePicker1_Copy"   
+                Height="30" />
+            <TextBlock Text="Gender" Margin="0,30,0,5" FontWeight="Bold" FontSize="16" />
+            <ComboBox x:Name="ComboBox2_Copy" Height="30" Background="White">
+
+                <ComboBoxItem Background="White" Foreground="#0B4B6E"   
+                    FontFamily="Verdana" FontSize="12" FontWeight="Bold">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="FaceMan" Margin="0,0,15,0" Foreground="#0B4B6E" />
+                        <TextBlock Text="Male"/>
+                    </StackPanel>
+                </ComboBoxItem>
+                <ComboBoxItem Background="White" Foreground="#0B4B6E"   
+                    FontFamily="Verdana" FontSize="12" FontWeight="Bold">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="FaceWoman" Margin="0,0,15,0" Foreground="#0B4B6E" />
+                        <TextBlock Text="Female"/>
+                    </StackPanel>
+                </ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <StackPanel Margin="825,210,150,0" VerticalAlignment="Top" Height="460">
+            <TextBlock Text="Address" Margin="0,30,0,5" FontWeight="Bold" FontSize="16"/>
+            <TextBox  Text="" Height="30">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Grid>
+                                        <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                                        <TextBlock x:Name="PlaceholderText" Text="Enter your Adrress" Foreground="Gray" Margin="5,0" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ScrollViewer x:Name="PART_ContentHost"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=Self}}" Value="">
+                                            <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBlock Text="Email" Margin="0,30,0,5" FontWeight="Bold" FontSize="16"/>
+            <TextBox  Text="" Height="30">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Grid>
+                                        <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                                        <TextBlock x:Name="PlaceholderText" Text="Enter your Email" Foreground="Gray" Margin="5,0" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ScrollViewer x:Name="PART_ContentHost"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=Self}}" Value="">
+                                            <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBlock Text="Phone Number" Margin="0,30,0,5" FontWeight="Bold" FontSize="16"/>
+            <TextBox  Text="" Height="30">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Grid>
+                                        <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                                        <TextBlock x:Name="PlaceholderText" Text="Enter your Phone Number" Foreground="Gray" Margin="5,0" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ScrollViewer x:Name="PART_ContentHost"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=Self}}" Value="">
+                                            <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBlock Text="Password" Margin="0,30,0,5" FontWeight="Bold" FontSize="16"/>
+            <TextBox  Text="" Height="30">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Grid>
+                                        <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                                        <TextBlock x:Name="PlaceholderText" Text="Enter your Password" Foreground="Gray" Margin="5,0" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ScrollViewer x:Name="PART_ContentHost"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=Self}}" Value="">
+                                            <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+            <TextBlock Text="Confirm Password" Margin="0,30,0,5" FontWeight="Bold" FontSize="16"/>
+            <TextBox  Text="" Height="30">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Grid>
+                                        <Border x:Name="Border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
+                                        <TextBlock x:Name="PlaceholderText" Text="Enter your Password Again" Foreground="Gray" Margin="5,0" Visibility="Collapsed" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        <ScrollViewer x:Name="PART_ContentHost"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Mode=Self}}" Value="">
+                                            <Setter TargetName="PlaceholderText" Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
+        </StackPanel>
+
+
+
+    </Grid>
+
+</Page>

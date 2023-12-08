@@ -1,0 +1,28 @@
+﻿<Page x:Class="Clinic_FrontEnd.Pages.BillRecord"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Clinic_FrontEnd.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1440"
+      Title="BillRecord">
+
+    <Grid Background="#F6F6F8">
+        <Label Content="Bill recored" HorizontalAlignment="Left" Margin="86,84,0,0" VerticalAlignment="Top" Width="262" FontSize="36" FontWeight="Bold"/>
+        <Rectangle Fill="White" HorizontalAlignment="Left" Height="156" Margin="86,148,0,0" Stroke="#FF0B4B6E" VerticalAlignment="Top" Width="1302"/>
+        <Label Content="Water Bill" HorizontalAlignment="Left" Margin="180,185,0,0" VerticalAlignment="Top" Width="108" FontWeight="Bold" FontSize="18"/>
+        <Label Content="Electricity Bill " HorizontalAlignment="Left" Margin="526,184,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+        <Label Content="Taxes" HorizontalAlignment="Left" Margin="907,185,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+        <Label Content="Rental Fees" HorizontalAlignment="Left" Margin="1169,185,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold"/>
+        <Label Content="Bill Photos" HorizontalAlignment="Left" Margin="86,331,0,0" VerticalAlignment="Top" FontSize="36" FontWeight="Bold"/>
+        <Rectangle HorizontalAlignment="Left" Height="431" Margin="180,429,0,0" Stroke="#FF0B4B6E" VerticalAlignment="Top" Width="320" Fill="#FF2774C3" Opacity="0.2"/>
+        <Rectangle HorizontalAlignment="Center" Height="431" Margin="0,429,0,0" Stroke="#FF0B4B6E" VerticalAlignment="Top" Width="320" Fill="#FF2774C3" Opacity="0.2"/>
+        <Rectangle HorizontalAlignment="Left" Height="431" Margin="924,429,0,0" Stroke="#FF0B4B6E" VerticalAlignment="Top" Width="320" Fill="#FF2774C3" Opacity="0.2"/>
+        <TextBox HorizontalAlignment="Left" Margin="166,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Height="35" Background="#FF2774C3" Opacity="0.2"/>
+        <TextBox HorizontalAlignment="Left" Margin="520,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Height="35" Background="#FF2774C3" Opacity="0.2"/>
+        <TextBox HorizontalAlignment="Left" Margin="867,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Height="35" Background="#FF2774C3" Opacity="0.2"/>
+        <TextBox HorizontalAlignment="Left" Margin="1154,226,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="136" Height="35" Background="#FF2774C3" Opacity="0.2"/>
+
+    </Grid>
+</Page>

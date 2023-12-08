@@ -1,0 +1,428 @@
+﻿<Page x:Class="Clinic_FrontEnd.Pages.BillingSystem"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Clinic_FrontEnd.Pages"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1500"
+      Title="BillingSystem">
+
+
+    <Grid RenderTransformOrigin="0.554,0.283" Margin="0,-116,0,10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140.8" />
+            <ColumnDefinition Width="461.2"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <!-- Set the background color of the entire grid to white -->
+        <Grid.Background>
+            <SolidColorBrush Color="#F6F6F8"/>
+        </Grid.Background>
+        <Border Grid.Column="2" 
+               Background="White" CornerRadius="10"
+               HorizontalAlignment="Left" Height="365"
+                Margin="452,531,0,0" VerticalAlignment="Top"
+                Width="390">
+            <TextBlock Text="Comparing Between Bills Over Monthes" FontWeight="Bold" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        </Border>
+
+        <Grid Grid.Column="2" Margin="1336,283,-1119,19">
+            <Grid.Resources>
+                <Style x:Key="CleanSeparator" TargetType="{x:Type lvc:Separator}">
+                    <Setter Property="IsEnabled" Value="False"/>
+                </Style>
+            </Grid.Resources>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <lvc:CartesianChart Grid.Row="2" Margin="-878,267,1196,27">
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Foreground="DodgerBlue" Title="Blue Axis"/>
+                    <lvc:Axis Foreground="IndianRed" Title="Red Axis" Position="RightTop">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator Style="{StaticResource CleanSeparator}"/>
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                    <lvc:Axis Foreground="DarkOliveGreen" Title="Green Axis" Position="RightTop">
+                        <lvc:Axis.Separator>
+                            <lvc:Separator Style="{StaticResource CleanSeparator}"/>
+                        </lvc:Axis.Separator>
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.Series>
+                    <lvc:LineSeries Values="1,5,3,5,3" ScalesYAt="0"/>
+                    <!--Scales at blue axis, Axis[0]-->
+                    <lvc:LineSeries Values="20,30,70,20,10"  ScalesYAt="1"/>
+                    <!--Scales at red axis, Axis[1]-->
+                    <lvc:LineSeries Values="600,300,200,600,800"  ScalesYAt="2"/>
+                    <!--Scales at green axis, Axis[2]-->
+                </lvc:CartesianChart.Series>
+            </lvc:CartesianChart>
+        </Grid>
+
+        <!-- rectangle of billing system -->
+        <Rectangle Grid.ColumnSpan="3" 
+           HorizontalAlignment="Left" 
+           Height="185" 
+           Margin="92,221,0,0" 
+           Stroke="White" 
+           VerticalAlignment="Top" 
+           Width="1352"
+           RadiusX="20"   
+           RadiusY="20" RenderTransformOrigin="0.488,0.308" Fill="White">
+            <Rectangle.Effect>
+                <DropShadowEffect ShadowDepth="10" 
+                          Color="Black" 
+                          Opacity="0.5" 
+                          BlurRadius="10"/>
+            </Rectangle.Effect>
+        </Rectangle>
+
+        <Rectangle Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="2" Margin="92,176,0,0" Stroke="Black" VerticalAlignment="Top" Width="312"/>
+        <TextBlock HorizontalAlignment="Left" Margin="92,130,0,0" TextWrapping="Wrap" Text="Add New Bill Record" VerticalAlignment="Top" Height="48" Width="363" FontSize="27" FontWeight="Bold" Grid.ColumnSpan="2"/>
+
+        <Rectangle Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="2" Margin="92,480,0,0" Stroke="Black" VerticalAlignment="Top" Width="822"/>
+
+
+        <!-- Fees box -->
+
+        <TextBox HorizontalAlignment="Left" Margin="323,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" TextChanged="TextBox_TextChanged" Height="49" BorderBrush="#1283A8" Grid.ColumnSpan="2" Grid.Column="1">
+            <TextBox.Background>
+                <SolidColorBrush Color="#FF2774C3" Opacity="0.2"/>
+            </TextBox.Background>
+        </TextBox>
+
+        <!-- Taxes box -->
+
+        <TextBox HorizontalAlignment="Left" Margin="13,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" TextChanged="TextBox_TextChanged" Height="49" BorderBrush="#1283A8" Grid.Column="1">
+            <TextBox.Background>
+                <SolidColorBrush Color="#FF2774C3" Opacity="0.2"/>
+            </TextBox.Background>
+        </TextBox>
+
+        <!-- Electricity bill -->
+
+        <TextBox Grid.Column="2" HorizontalAlignment="Left" Margin="543,323,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" TextChanged="TextBox_TextChanged" Height="49" BorderBrush="#1283A8">
+            <TextBox.Background>
+                <SolidColorBrush Color="#FF2774C3" Opacity="0.2"/>
+            </TextBox.Background>
+        </TextBox>
+
+        <!-- Water bill -->
+
+        <TextBox Grid.Column="2" HorizontalAlignment="Left" Margin="188,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" TextChanged="TextBox_TextChanged" Height="49" BorderBrush="#1283A8">
+            <TextBox.Background>
+                <SolidColorBrush Color="#FF2774C3" Opacity="0.2"/>
+            </TextBox.Background>
+        </TextBox>
+
+        <!-- bills blockbox -->
+
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="551,265,0,0" TextWrapping="Wrap" Text="Electricity Bill" VerticalAlignment="Top" Height="36" Width="180" FontSize="24" FontWeight="Bold"/>
+        <TextBlock HorizontalAlignment="Left" Margin="91,265,0,0" TextWrapping="Wrap" Text="Taxes" VerticalAlignment="Top" Height="36" Width="86" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Left" Margin="375,265,0,0" TextWrapping="Wrap" Text="Fees" VerticalAlignment="Top" Height="36" Width="86" FontSize="24" FontWeight="Bold" Grid.Column="1"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="220,265,0,0" TextWrapping="Wrap" Text="Water Bills" VerticalAlignment="Top" Height="36" Width="124" FontSize="24" FontWeight="Bold"/>
+
+        <!-- Image Icons -->
+
+        <Rectangle Grid.Column="2" HorizontalAlignment="Left" Height="43" Margin="393,329,0,0" Stroke="Black" VerticalAlignment="Top" Width="42"/>
+        <Rectangle Grid.Column="2" HorizontalAlignment="Left" Height="43" Margin="757,326,0,0" Stroke="Black" VerticalAlignment="Top" Width="42"/>
+        <Rectangle HorizontalAlignment="Left" Height="43" Margin="221,326,0,0" Stroke="Black" VerticalAlignment="Top" Width="42" Grid.Column="1"/>
+        <Rectangle Grid.Column="2" HorizontalAlignment="Left" Height="43" Margin="76,326,0,0" Stroke="Black" VerticalAlignment="Top" Width="42"/>
+
+        <materialDesign:PackIcon Kind="Image" Height="43" Width="42" Grid.Column="1" Margin="221,326,0,0">
+            <materialDesign:PackIcon.Foreground>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0.5,1">
+                    <GradientStop Color="#FF19C0D4" Offset="0" />
+                    <GradientStop Color="#FF053787" Offset="1" />
+                </LinearGradientBrush>
+            </materialDesign:PackIcon.Foreground>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Kind="Image" Height="43" Width="42" Grid.Column="2" Margin="76,326,0,0">
+            <materialDesign:PackIcon.Foreground>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0.5,1">
+                    <GradientStop Color="#FF19C0D4" Offset="0" />
+                    <GradientStop Color="#FF053787" Offset="1" />
+                </LinearGradientBrush>
+            </materialDesign:PackIcon.Foreground>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Kind="Image" Height="42" Width="42" Grid.Column="2" Margin="393,330,0,0">
+            <materialDesign:PackIcon.Foreground>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0.5,1">
+                    <GradientStop Color="#FF19C0D4" Offset="0" />
+                    <GradientStop Color="#FF053787" Offset="1" />
+                </LinearGradientBrush>
+            </materialDesign:PackIcon.Foreground>
+        </materialDesign:PackIcon>
+        <materialDesign:PackIcon Kind="Image" Height="43" Width="42" Grid.Column="2" Margin="757,326,0,0">
+            <materialDesign:PackIcon.Foreground>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0.5,1">
+                    <GradientStop Color="#FF19C0D4" Offset="0" />
+                    <GradientStop Color="#FF053787" Offset="1" />
+                </LinearGradientBrush>
+            </materialDesign:PackIcon.Foreground>
+        </materialDesign:PackIcon>
+        <!-- Add button-->
+
+        <Button Grid.Column="2" 
+         Content="Add" 
+         HorizontalAlignment="Left" 
+         Margin="736,438,0,0" 
+         VerticalAlignment="Top" 
+         Height="37" 
+         Width="106" 
+         Click="Button_Click" 
+         FontSize="16" 
+         FontWeight="Bold" 
+         Foreground="White">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF9EE6E6"/>
+                    <GradientStop Color="#FF2774C3" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}"
+                     BorderBrush="{TemplateBinding BorderBrush}"
+                     BorderThickness="{TemplateBinding BorderThickness}"
+                     CornerRadius="10">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+
+
+        <!-- Data Grid and recent textblock -->
+
+
+
+        <DatePicker Grid.Column="2" HorizontalAlignment="Left" Margin="80,500,0,0" VerticalAlignment="Top" Height="35" Width="160" FontSize="20" Foreground="#FF2589B2"/>
+
+        <TextBlock HorizontalAlignment="Left" Margin="92,434,0,0" TextWrapping="Wrap" Text="Recent Records" VerticalAlignment="Top" Height="48" Width="363" FontSize="27" FontWeight="Bold" Grid.ColumnSpan="2"/>
+        <Rectangle Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="2" Margin="92,480,0,0" Stroke="Black" VerticalAlignment="Top" Width="822"/>
+
+
+        <!-- ScrollViewer with StackPanel starts here -->
+        <ScrollViewer Grid.ColumnSpan="3" VerticalScrollBarVisibility="Auto" Margin="10,557,494,19">
+            <StackPanel>
+                <Grid Margin="80,0,0,15">
+                    <Rectangle HorizontalAlignment="Left" Height="86" VerticalAlignment="Top" Width="813" RadiusX="20" RadiusY="20">
+                        <Rectangle.Effect>
+                            <DropShadowEffect Color="Gray" Direction="320" ShadowDepth="5" Opacity="0.7" BlurRadius="5"/>
+                        </Rectangle.Effect>
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="White" Opacity="1"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="66,0,0,0" Text="January - 2023" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF2774C3" Width="277"/>
+                    <Button Content="Veiw" Click="OpenBillRecord" HorizontalAlignment="Left" Margin="670,0,0,0" VerticalAlignment="Center" Foreground="White" Height="26" Width="70" FontSize="14" Background="#FF65B0D5"/>
+
+                </Grid>
+
+
+
+                <Grid Margin="80,0,0,15">
+                    <Rectangle HorizontalAlignment="Left" Height="86" VerticalAlignment="Top" Width="813" RadiusX="20" RadiusY="20">
+                        <Rectangle.Effect>
+                            <DropShadowEffect Color="Gray" Direction="320" ShadowDepth="5" Opacity="0.7" BlurRadius="5"/>
+                        </Rectangle.Effect>
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="White" Opacity="1"/>
+                        </Rectangle.Fill>
+                    </Rectangle>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="50,0,0,0" Text=" February - 2023" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF2774C3"/>
+                    <Button Content="Veiw" Click="OpenBillRecord" HorizontalAlignment="Left" Margin="670,0,0,0" VerticalAlignment="Center" Foreground="White" Height="26" Width="70" FontSize="14" Background="#FF65B0D5"/>
+
+
+                </Grid>
+
+
+
+                <Grid Margin="80,0,0,15">
+                    <Grid.Effect>
+                        <DropShadowEffect Color="Gray" Direction="320" ShadowDepth="5" Opacity="0.7" BlurRadius="5"/>
+                    </Grid.Effect>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="783*"/>
+                        <ColumnDefinition Width="56*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0*"/>
+                    </Grid.RowDefinitions>
+                    <Rectangle HorizontalAlignment="Left" Height="86" VerticalAlignment="Center" Width="813" RadiusX="20" RadiusY="20" Grid.ColumnSpan="2" Fill="White"/>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="56,0,0,0" Text="March - 2023" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF2774C3" Height="46" Width="218"/>
+                    <Button Content="Veiw" Click="OpenBillRecord" HorizontalAlignment="Left" Margin="670,0,0,0" VerticalAlignment="Center" Foreground="White" Height="26" Width="70" FontSize="14" Background="#FF65B0D5"/>
+
+                </Grid>
+
+
+
+                <Grid Margin="80,0,0,15">
+                    <Rectangle HorizontalAlignment="Left" Height="86" VerticalAlignment="Top" Width="813" RadiusX="20" RadiusY="20">
+                        <Rectangle.Effect>
+                            <DropShadowEffect Color="Gray" Direction="320" ShadowDepth="5" Opacity="0.7" BlurRadius="5"/>
+                        </Rectangle.Effect>
+                        <Rectangle.Style>
+                            <Style/>
+                        </Rectangle.Style>
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="White" Opacity="1"/>
+                        </Rectangle.Fill>
+
+                    </Rectangle>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="65,0,0,0" Text="April - 2023" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF2774C3"/>
+                    <Button Content="Veiw" Click="OpenBillRecord" HorizontalAlignment="Left" Margin="670,0,0,0" VerticalAlignment="Center" Foreground="White" Height="26" Width="70" FontSize="14" Background="#FF65B0D5"/>
+
+                </Grid>
+
+
+
+                <Grid Margin="80,0,0,15">
+                    <Rectangle HorizontalAlignment="Left" Height="86" VerticalAlignment="Top" Width="813" RadiusX="20" RadiusY="20">
+                        <Rectangle.Effect>
+                            <DropShadowEffect Color="Gray" Direction="320" ShadowDepth="5" Opacity="0.7" BlurRadius="5"/>
+                        </Rectangle.Effect>
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="White" Opacity="1"/>
+                        </Rectangle.Fill>
+
+                    </Rectangle>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="65,0,0,0" Text="May - 2023" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF2774C3" RenderTransformOrigin="0.881,0.637"/>
+                    <Button Content="Veiw" Click="OpenBillRecord" HorizontalAlignment="Left" Margin="670,0,0,0" VerticalAlignment="Center" Foreground="White" Height="26" Width="70" FontSize="14" Background="#FF65B0D5"/>
+
+                </Grid>
+
+
+
+
+                <Grid Margin="80,0,0,15">
+                    <Rectangle HorizontalAlignment="Left" Height="86" VerticalAlignment="Top" Width="813" RadiusX="20" RadiusY="20">
+                        <Rectangle.Effect>
+                            <DropShadowEffect Color="Gray" Direction="320" ShadowDepth="5" Opacity="0.7" BlurRadius="5"/>
+                        </Rectangle.Effect>
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="White" Opacity="1"/>
+                        </Rectangle.Fill>
+
+                    </Rectangle>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="62,0,0,0" Text="June - 2023" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF2774C3"/>
+
+                    <Button Content="Veiw" Click="OpenBillRecord" HorizontalAlignment="Left" Margin="670,0,0,0" VerticalAlignment="Center" Foreground="White" Height="26" Width="70" FontSize="14" Background="#FF65B0D5"/>
+
+                </Grid>
+
+
+
+
+
+                <Grid Margin="80,0,0,15">
+                    <Rectangle HorizontalAlignment="Left" Height="86" Stroke="#FF2774C3" VerticalAlignment="Top" Width="813" RadiusX="20" RadiusY="20">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="#FFFFFF" Opacity="1"/>
+                        </Rectangle.Fill>
+
+                    </Rectangle>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="61,0,0,0" Text="July - 2023" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF2774C3"/>
+
+                    <Button Content="Veiw" Click="OpenBillRecord" HorizontalAlignment="Left" Margin="670,0,0,0" VerticalAlignment="Center" Foreground="White" Height="26" Width="70" FontSize="14" Background="#FF65B0D5"/>
+
+                </Grid>
+
+
+
+                <Grid Margin="80,0,0,15">
+                    <Rectangle HorizontalAlignment="Left" Height="86" Stroke="#1283A8" VerticalAlignment="Top" Width="813" RadiusX="20" RadiusY="20">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="white" Opacity="1"/>
+                        </Rectangle.Fill>
+
+                    </Rectangle>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="50,0,0,0" Text="August - 2023" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF2774C3"/>
+                    <Button Content="Veiw" Click="OpenBillRecord" HorizontalAlignment="Left" Margin="670,0,0,0" VerticalAlignment="Center" Foreground="White" Height="26" Width="70" FontSize="14" Background="#FF65B0D5"/>
+                </Grid>
+
+
+
+
+                <Grid Margin="80,0,0,15">
+                    <Rectangle HorizontalAlignment="Left" Height="86" Stroke="#1283A8" VerticalAlignment="Top" Width="813" RadiusX="20" RadiusY="20">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="white" Opacity="1"/>
+                        </Rectangle.Fill>
+
+                    </Rectangle>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="49,0,0,0" Text="Septamer - 2023" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF2774C3"/>
+                    <Button Content="Veiw" HorizontalAlignment="Left" Margin="670,0,0,0" VerticalAlignment="Center" Foreground="White" Height="26" Width="70" FontSize="14" Background="#FF65B0D5"/>
+
+                </Grid>
+
+
+
+                <Grid Margin="80,0,0,15">
+                    <Rectangle HorizontalAlignment="Left" Height="86" Stroke="#1283A8" VerticalAlignment="Top" Width="813" RadiusX="20" RadiusY="20">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="white" Opacity="1"/>
+                        </Rectangle.Fill>
+
+                    </Rectangle>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="51,0,0,0" Text="Octuber - 2023" VerticalAlignment="Center" FontSize="35" FontWeight="Bold" Foreground="#FF2774C3"/>
+
+                    <Button Content="Veiw" Click="OpenBillRecord" HorizontalAlignment="Left" Margin="670,0,0,0" VerticalAlignment="Center" Foreground="White" Height="26" Width="70" FontSize="14" Background="#FF65B0D5"/>
+
+                </Grid>
+
+
+                <Grid Margin="80,0,0,15">
+                    <Rectangle HorizontalAlignment="Left" Height="86" Stroke="#1283A8" VerticalAlignment="Top" Width="813" RadiusX="20" RadiusY="20">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="white" Opacity="1"/>
+                        </Rectangle.Fill>
+
+                    </Rectangle>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="51,11,0,0" Text="Novmber - 2023" VerticalAlignment="Top" FontSize="35" FontWeight="Bold" Foreground="#FF2774C3"/>
+
+                    <Button Content="Veiw" Click="OpenBillRecord" HorizontalAlignment="Left" Margin="670,0,0,0" VerticalAlignment="Center" Foreground="White" Height="26" Width="70" FontSize="14" Background="#FF65B0D5"/>
+
+                </Grid>
+
+
+
+                <Grid Margin="80,0,0,15">
+                    <Rectangle HorizontalAlignment="Left" Height="86" Stroke="#1283A8" VerticalAlignment="Top" Width="813" RadiusX="20" RadiusY="20">
+                        <Rectangle.Fill>
+                            <SolidColorBrush Color="white" Opacity="1"/>
+                        </Rectangle.Fill>
+
+                    </Rectangle>
+
+                    <TextBlock HorizontalAlignment="Left" Margin="50,11,0,0" Text="Decmber - 2023" VerticalAlignment="Top" FontSize="35" FontWeight="Bold" Foreground="#FF2774C3"/>
+                    <Button Content="Veiw" Click="OpenBillRecord" HorizontalAlignment="Left" Margin="670,0,0,0" VerticalAlignment="Center" Foreground="White" Height="26" Width="70" FontSize="14" Background="#FF65B0D5"/>
+
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

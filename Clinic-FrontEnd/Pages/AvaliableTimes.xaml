@@ -1,0 +1,32 @@
+﻿<Page x:Class="Clinic_FrontEnd.Pages.AvaliableTimes"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Clinic_FrontEnd.Pages"
+      xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+      xmlns:SfSchedule="clr-namespace:Syncfusion;assembly=Syncfusion.SfBusyIndicator.WPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="1024" d:DesignWidth="1100"
+      Title="AvaliableTimes">
+
+    <Grid Background="White">
+        <Grid Margin="20">
+            <syncfusion:SfScheduler x:Name="Schedule" ViewType="Week">
+                <syncfusion:SfScheduler.DaysViewSettings>
+                    <syncfusion:DaysViewSettings>
+                        <syncfusion:DaysViewSettings.AllDayMoreAppointmentsIndicatorTemplate>
+                            <DataTemplate >
+                                <TextBlock Text="{Binding StringFormat=+{0}}"
+                                      Background="LightBlue" Foreground="Black"
+                                      HorizontalAlignment="Stretch" TextAlignment="Left"
+                                      VerticalAlignment="Stretch" Padding="2,3,0,0">
+                                </TextBlock>
+                            </DataTemplate>
+                        </syncfusion:DaysViewSettings.AllDayMoreAppointmentsIndicatorTemplate>
+                    </syncfusion:DaysViewSettings>
+                </syncfusion:SfScheduler.DaysViewSettings>
+            </syncfusion:SfScheduler>
+        </Grid>
+    </Grid>
+</Page>

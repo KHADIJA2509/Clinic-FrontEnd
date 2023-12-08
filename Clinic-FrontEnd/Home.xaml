@@ -1,0 +1,80 @@
+﻿<Window x:Class="Clinic_FrontEnd.Home"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Clinic_FrontEnd"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d"
+        Title="Home" Height="1024" Width="1440" WindowState="Maximized">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Image Source="/Images/Logo.jpeg" Stretch="Fill" Margin="0,1,0,0" VerticalAlignment="Top" Height="53" />
+        <ListBox Grid.Column="0" SelectionMode="Single" SelectionChanged="sidebar_SelectionChanged" x:Name="sidebar" Margin="0,50,0,50"  BorderThickness="0">
+
+            <local:NavButton Navlink="/Pages/Profile.xaml" Margin="6" Padding="4">
+                <materialDesign:PackIcon Kind="User" Foreground="#29A3EC" />
+            </local:NavButton>
+            <local:NavButton Navlink="/Pages/Dashboard.xaml" Margin="6" Padding="4">
+                <materialDesign:PackIcon Kind="ViewDashboard" Foreground="#29A3EC" />
+            </local:NavButton>
+            <local:NavButton Navlink="/Pages/Report.xaml" Margin="6" Padding="4">
+                <materialDesign:PackIcon Kind="Edit" Foreground="#29A3EC" />
+            </local:NavButton>
+            <local:NavButton Navlink="/Pages/MedicalRecord.xaml" Margin="6" Padding="4">
+                <materialDesign:PackIcon Kind="Table" Foreground="#29A3EC" />
+            </local:NavButton>
+            <local:NavButton Navlink="/Pages/Chat.xaml" Margin="6" Padding="4">
+                <materialDesign:PackIcon Kind="Chat" Foreground="#29A3EC" />
+            </local:NavButton>
+
+            <local:NavButton Navlink="/Pages/Chat.xaml" Margin="6" Padding="4">
+                <materialDesign:PackIcon Kind="Analytics" Margin="0,0,0,0" Foreground="#29A3EC" />
+            </local:NavButton>
+
+            <local:NavButton Navlink="/Pages/Chat.xaml" Margin="6" Padding="4">
+                <materialDesign:PackIcon Kind="CurrencyUsd" Margin="0,0,0,0" Foreground="#29A3EC" />
+            </local:NavButton>
+
+            <local:NavButton Navlink="/Pages/Chat.xaml" Margin="6" Padding="4">
+                <materialDesign:PackIcon Kind="AccountMultiple" Margin="0,0,0,0" Foreground="#29A3EC" />
+            </local:NavButton>
+
+            <local:NavButton Navlink="/Pages/Chat.xaml" Margin="6" Padding="4">
+                <materialDesign:PackIcon Kind="Patient" Margin="0,0,0,0" Foreground="#29A3EC" />
+            </local:NavButton>
+
+            <local:NavButton Navlink="/Pages/Chat.xaml" Margin="6" Padding="4">
+                <materialDesign:PackIcon Kind="TableAdd" Margin="0,0,0,0" Foreground="#29A3EC" />
+            </local:NavButton>
+
+            <local:NavButton Navlink="/Pages/Chat.xaml" Margin="6" Padding="4">
+                <materialDesign:PackIcon Kind="TableEdit" Margin="0,0,0,0" Foreground="#29A3EC" />
+            </local:NavButton>
+
+            <local:NavButton Navlink="/Pages/Chat.xaml" Margin="6" Padding="4">
+                <materialDesign:PackIcon Kind="ArrowLeftCircle" Margin="0,0,0,0" Foreground="#29A3EC" />
+            </local:NavButton>
+
+
+            <Button Style="{StaticResource MaterialDesignFloatingActionButton}"
+                          BorderBrush="{x:Null}" Background="{x:Null}" Foreground="Black" x:Name="btnExit" Click="btnExit_Click" Width="35" Height="34">
+                <StackPanel Margin="-5">
+                    <materialDesign:PackIcon Kind="ExitToApp" Margin="0,0,0,0" Foreground="#29A3EC"/>
+                </StackPanel>
+            </Button>
+
+        </ListBox>
+
+        <Frame Grid.Column="1" x:Name="navframe" NavigationUIVisibility="Hidden" Background="#e9ecef"/>
+        <Button Grid.Column="1" Content="Button" Click="btnExit_Click" HorizontalAlignment="Left" Margin="211,644,0,0" VerticalAlignment="Top"/>
+
+
+    </Grid>
+</Window> 
