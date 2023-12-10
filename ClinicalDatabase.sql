@@ -139,4 +139,42 @@ CREATE TABLE PATIENT_DATA (
     FOREIGN KEY (PatientID) REFERENCES MEDICAL_HISTORY(PatientID)
 );
 
+CREATE TABLE BILLING (
+    PaymentID INT PRIMARY KEY,
+    PaymentDateAndTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Amount DECIMAL
+);
+
+CREATE TABLE TOTAL_BILLS (
+	BillsID INT PRIMARY KEY,
+    Rent DECIMAL,
+    Taxes DECIMAL,
+    WaterBill DECIMAL,
+    ElectricBill DECIMAL,
+    FOREIGN KEY (BillsID) REFERENCES BILLING(PaymentID)
+);
+
+CREATE TABLE SALARY (
+    SalaryID INT PRIMARY KEY,
+    UserID INT,
+    Salary DECIMAL,
+    SalaryDeduction DECIMAL,
+    SalaryOfMonth DECIMAL AS (Salary - SalaryDeduction),
+    FOREIGN KEY (UserID) REFERENCES User(UserID)
+);
+
+CREATE TABLE PATIENT_PAYMENTS (
+    PatientPaymentID INT PRIMARY KEY,
+    PatientID INT,
+    MedicalExpenses DECIMAL,
+    OtherExpenses DECIMAL,
+    FOREIGN KEY (PatientPaymentID) REFERENCES BILLING(PaymentID)
+);
+
+CREATE TABLE AVAILABLE_TIMES (
+    DoctorID INT PRIMARY KEY,
+    AvailableDate DATE,
+    AvailableTime TIME,
+    FOREIGN KEY (DoctorID) REFERENCES User(UserID)
+);
 
