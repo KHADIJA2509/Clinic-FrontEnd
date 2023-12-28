@@ -1,180 +1,286 @@
-CREATE DATABASE ClinicalDatabase;
-USE ClinicalDatabase;
+CREATE DATABASE ClinicLDatabasee;
+USE ClinicLDatabasee;
 
-CREATE TABLE USER (
-    UserID INT PRIMARY KEY AUTO_INCREMENT,
-    FirstName VARCHAR(255),
-    LastName VARCHAR(255),
-    Gender VARCHAR(10),
+-- Create the OWNER table
+CREATE TABLE OWNER (
+    OwnerID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(25),
+    LastName VARCHAR(25),
+    Gender VARCHAR(6),
     BirthDate DATE,
-    Email VARCHAR(255),
-    PhoneNumber INT,
-    Address VARCHAR(255),
-    About VARCHAR(255),
+    Email VARCHAR(100),
+    PhoneNumber VARCHAR(20),
+    Address VARCHAR(100),
+    About VARCHAR(300),
     Age INT
 );
+
 DELIMITER //
-CREATE TRIGGER calculate_age_user
-BEFORE INSERT ON USER
+CREATE TRIGGER calc_owner_age
+BEFORE INSERT ON OWNER
 FOR EACH ROW
-BEGIN
-    SET NEW.Age = TIMESTAMPDIFF(YEAR, NEW.BirthDate, CURDATE());
-END;
+SET NEW.Age = YEAR(CURDATE()) - YEAR(NEW.BirthDate);
 //
 DELIMITER ;
 
-
-CREATE TABLE PATIENT (
-    PatientID INT PRIMARY KEY AUTO_INCREMENT,
-    PatientType VARCHAR(255),
+-- Create the DOCTOR table
+CREATE TABLE DOCTOR (
+    DoctorID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(25),
+    LastName VARCHAR(25),
+    Gender VARCHAR(6),
     BirthDate DATE,
-    Address VARCHAR(255),
-    FirstName VARCHAR(255),
-    LastName VARCHAR(255),
-    OtherContact VARCHAR(255), 
-    PhoneNumber INT,
+    Email VARCHAR(100),
+    PhoneNumber VARCHAR(20),
+    Address VARCHAR(100),
+    About VARCHAR(300),
     Age INT
 );
+
 DELIMITER //
-CREATE TRIGGER calculate_age_patient
-BEFORE INSERT ON Patient
+CREATE TRIGGER calc_doctor_age
+BEFORE INSERT ON DOCTOR
 FOR EACH ROW
-BEGIN
-    SET NEW.Age = TIMESTAMPDIFF(YEAR, NEW.BirthDate, CURDATE());
-END;
-// 
+SET NEW.Age = YEAR(CURDATE()) - YEAR(NEW.BirthDate);
+//
 DELIMITER ;
 
-
-CREATE TABLE LOGIN (
-    UserID INT,
-    Username VARCHAR(255) UNIQUE,
-    Password VARCHAR(255),
-    FOREIGN KEY (UserID) REFERENCES USER(UserID)
+-- Create the RECEPTION table
+CREATE TABLE RECEPTION (
+    ReceptionID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(25),
+    LastName VARCHAR(25),
+    Gender VARCHAR(6),
+    BirthDate DATE,
+    Email VARCHAR(100),
+    PhoneNumber VARCHAR(20),
+    Address VARCHAR(100),
+    About VARCHAR(300),
+    Age INT
 );
 
+DELIMITER //
+CREATE TRIGGER calc_reception_age
+BEFORE INSERT ON RECEPTION
+FOR EACH ROW
+SET NEW.Age = YEAR(CURDATE()) - YEAR(NEW.BirthDate);
+//
+DELIMITER ;
+
+-- Create the PATIENT table
+CREATE TABLE PATIENT (
+    PatientID INT PRIMARY KEY AUTO_INCREMENT,
+    PatientNAID INT,
+    FirstName VARCHAR(25),
+    LastName VARCHAR(25),
+    PatientType VARCHAR(100),
+    OtherContact VARCHAR(20),
+    PhoneNumber VARCHAR(20),
+    BirthDate DATE,
+    Address VARCHAR(100),
+    Age INT
+);
+
+DELIMITER //
+CREATE TRIGGER calc_patient_age
+BEFORE INSERT ON PATIENT
+FOR EACH ROW
+SET NEW.Age = YEAR(CURDATE()) - YEAR(NEW.BirthDate);
+//
+DELIMITER ;
+
+CREATE TABLE LOGIN (
+    DoctorID INT,
+    ReceptionID INT,
+    OwnerID INT,
+    Username VARCHAR(255),
+    UNIQUE KEY unique_username (Username(255)),
+    Password VARCHAR(15),
+    FOREIGN KEY (DoctorID) REFERENCES DOCTOR(DoctorID),
+    FOREIGN KEY (ReceptionID) REFERENCES RECEPTION(ReceptionID),
+    FOREIGN KEY (OwnerID) REFERENCES OWNER(OwnerID)
+);
 
 CREATE TABLE REPORT (
     ReportID INT PRIMARY KEY AUTO_INCREMENT,
     PatientID INT,
     DoctorID INT,
+    Title VARCHAR(300),
+    Description VARCHAR(300),
     ReportDateAndTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     SessionNumber INT,
-    TreatmentStage VARCHAR(255),
-    FOREIGN KEY (DoctorID) REFERENCES USER(UserID),
+    Diagnosis VARCHAR(300),
+    TreatmentStage VARCHAR(100),
+    FOREIGN KEY (DoctorID) REFERENCES DOCTOR(DoctorID),
+    FOREIGN KEY (PatientID) REFERENCES PATIENT(PatientID)
+);
+
+CREATE TABLE CAMERA (
+    CameraID INT PRIMARY KEY AUTO_INCREMENT,
+    Brand VARCHAR(100),
+    Model VARCHAR(100),
+    ViewDateAndTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    ViewDescription VARCHAR(300)
+);
+
+CREATE TABLE ATTENDANCE (
+    AttendanceID INT PRIMARY KEY AUTO_INCREMENT,
+    OwnerID INT,
+    DoctorID INT,
+    ReceptionID INT,
+    TimeofArrival TIME,
+    TimeofLeave TIME,
+    DateofTheDay DATE,
+    Absence VARCHAR(300),
+    Excuse VARCHAR(300),
+    TotalHoursWorking INT,
+    FOREIGN KEY (OwnerID) REFERENCES OWNER(OwnerID),
+    FOREIGN KEY (DoctorID) REFERENCES DOCTOR(DoctorID),
+    FOREIGN KEY (ReceptionID) REFERENCES RECEPTION(ReceptionID)
+);
+
+CREATE TABLE APPOINTMENTS (
+    AppointmentID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(25),
+    LastName VARCHAR(25),
+    BirthDate DATE,
+    Gender VARCHAR(6),
+    DoctorID INT,
+    AppointmentDate DATE,
+    AppointmentTime TIME,
+    Address VARCHAR(100),
+    Email VARCHAR(100),
+    PhoneNumber VARCHAR(20),
+    ReferralDoctor VARCHAR(300),
+    ClinicReferralDoctorID INT,
+    Insurance VARCHAR(300),
+    StateOfPatient VARCHAR(100),
+    FOREIGN KEY (DoctorID) REFERENCES DOCTOR(DoctorID)
+);
+
+CREATE TABLE ASSESSMENT (
+    AssessmentID INT PRIMARY KEY AUTO_INCREMENT,
+    PatientAge INT,
+    PatientComplaint VARCHAR(300),
+    BodyPart VARCHAR(100),
+    InjuryType VARCHAR(100),
+    TreatmentPlan VARCHAR(300)
+);
+
+CREATE TABLE MEDICAL_HISTORY (
+    PatientID INT PRIMARY KEY,
+    Surgeries VARCHAR(255),
+    Illness VARCHAR(255),
+    FamilyMedicalBackground VARCHAR(100)
+);
+
+CREATE TABLE PATIENT_DATA (
+    PatientName VARCHAR(255),
+    PatientID INT,
+    AssessmentID INT,
+    ReportID INT,
+    PRIMARY KEY (PatientName),
     FOREIGN KEY (PatientID) REFERENCES PATIENT(PatientID)
 );
 
 
-CREATE TABLE CAMERA(
-	CameraID INT PRIMARY KEY AUTO_INCREMENT,
-    Brand VARCHAR(255),
-    Model VARCHAR(255),
-    ViewDateAndTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    ViewDescription VARCHAR(255)
-);
+-- RELATIONS
 
-
-CREATE TABLE ATTENDANCE (
-    UserID INT PRIMARY KEY,
-    TimeofArrival TIME,
-    TimeofLeave TIME,
-    DateofTheDay DATE,
-    Absence VARCHAR(255),
-    Excuse VARCHAR(255),
-    TotalHoursWorking INT,
-    FOREIGN KEY (UserID) REFERENCES USER(UserID)
-);
-
-
-CREATE TABLE APPOINTMENTS (
-    AppointmentID INT PRIMARY KEY,
-    FirstName VARCHAR(255),
-    LastName VARCHAR(255),
-    BirthDate DATE,
-    Gender VARCHAR(10),
+CREATE TABLE CHECK_TIMES (
+    AppointmentID INT,
     DoctorID INT,
-    AppointmentDate DATE,
-    AppointmentTime TIME,
-    Address VARCHAR(255),
-    Email VARCHAR(255),
-    PhoneNumber INT,
-    ReferralDoctor VARCHAR(255),
-    ClinicReferralDoctorID INT,
-    Insurance VARCHAR(255),
-    StateOfPatient VARCHAR(255),
-    FOREIGN KEY (DoctorID) REFERENCES USER(UserID),
-    FOREIGN KEY (ClinicReferralDoctorID) REFERENCES USER(UserID)
+    FOREIGN KEY (AppointmentID) REFERENCES APPOINTMENTS(AppointmentID),
+    FOREIGN KEY (DoctorID) REFERENCES DOCTOR(DoctorID)
 );
 
-
-CREATE TABLE ASSESSMENT (
-    AssessmentID INT PRIMARY KEY,
-    DoctorOrReceptionID INT,
-    PatientAge INT,
-    PatientComplain VARCHAR(255),
-    BodyPart VARCHAR(255),
-    InjuryType VARCHAR(255),
-    TreatmentPlan VARCHAR(255),
-    FOREIGN KEY (DoctorOrReceptionID) REFERENCES USER(UserID)
-);
-
-
-CREATE TABLE MEDICAL_HISTORY (
-    PatientID INT PRIMARY KEY,
-    Surgiers VARCHAR(255),
-    Illness VARCHAR(255),
-    FamilyMedicalBackground VARCHAR(255)
-);
-
-
-CREATE TABLE PATIENT_DATA (
+CREATE TABLE RECORD_INFO (
     PatientID INT,
-    AssessmentID INT,
-    ReportID INT,
-    PRIMARY KEY (PatientID, AssessmentID, ReportID),
+    ReceptionID INT,
     FOREIGN KEY (PatientID) REFERENCES PATIENT(PatientID),
-    FOREIGN KEY (AssessmentID) REFERENCES ASSESSMENT(AssessmentID),
-    FOREIGN KEY (ReportID) REFERENCES REPORT(ReportID),
-    FOREIGN KEY (PatientID) REFERENCES MEDICAL_HISTORY(PatientID)
+    FOREIGN KEY (ReceptionID) REFERENCES RECEPTION(ReceptionID)
 );
 
-CREATE TABLE BILLING (
-    PaymentID INT PRIMARY KEY,
-    PaymentDateAndTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    Amount DECIMAL
-);
-
-CREATE TABLE TOTAL_BILLS (
-	BillsID INT PRIMARY KEY,
-    Rent DECIMAL,
-    Taxes DECIMAL,
-    WaterBill DECIMAL,
-    ElectricBill DECIMAL,
-    FOREIGN KEY (BillsID) REFERENCES BILLING(PaymentID)
-);
-
-CREATE TABLE SALARY (
-    SalaryID INT PRIMARY KEY,
-    UserID INT,
-    Salary DECIMAL,
-    SalaryDeduction DECIMAL,
-    SalaryOfMonth DECIMAL AS (Salary - SalaryDeduction),
-    FOREIGN KEY (UserID) REFERENCES User(UserID)
-);
-
-CREATE TABLE PATIENT_PAYMENTS (
-    PatientPaymentID INT PRIMARY KEY,
+CREATE TABLE HAVE (
     PatientID INT,
-    MedicalExpenses DECIMAL,
-    OtherExpenses DECIMAL,
-    FOREIGN KEY (PatientPaymentID) REFERENCES BILLING(PaymentID)
+    PatientName VARCHAR(255),
+    FOREIGN KEY (PatientID) REFERENCES PATIENT(PatientID),
+    FOREIGN KEY (PatientName) REFERENCES PATIENT_DATA(PatientName)
 );
 
-CREATE TABLE AVAILABLE_TIMES (
-    DoctorID INT PRIMARY KEY,
-    AvailableDate DATE,
-    AvailableTime TIME,
-    FOREIGN KEY (DoctorID) REFERENCES User(UserID)
+CREATE TABLE VIEW_CAMERA (
+    CameraID INT,
+    OwnerID INT,
+    ReceptionID INT,
+    FOREIGN KEY (CameraID) REFERENCES CAMERA(CameraID),
+    FOREIGN KEY (OwnerID) REFERENCES OWNER(OwnerID),
+    FOREIGN KEY (ReceptionID) REFERENCES RECEPTION(ReceptionID)
 );
 
+CREATE TABLE ADD_DOCTOR (
+    OwnerID INT,
+    DoctorID INT,
+    FOREIGN KEY (OwnerID) REFERENCES OWNER(OwnerID),
+    FOREIGN KEY (DoctorID) REFERENCES DOCTOR(DoctorID)
+);
+
+CREATE TABLE RECORD_ATTENDANCE (
+    AttendanceID INT,
+    DoctorID INT,
+    OwnerID INT,
+    ReceptionID INT,
+    FOREIGN KEY (AttendanceID) REFERENCES ATTENDANCE(AttendanceID),
+    FOREIGN KEY (DoctorID) REFERENCES DOCTOR(DoctorID),
+    FOREIGN KEY (OwnerID) REFERENCES OWNER(OwnerID),
+    FOREIGN KEY (ReceptionID) REFERENCES RECEPTION(ReceptionID)
+);
+
+CREATE TABLE VIEW_ATTENDANCE (
+    OwnerID INT,
+    AttendanceID INT,
+    FOREIGN KEY (OwnerID) REFERENCES OWNER(OwnerID),
+    FOREIGN KEY (AttendanceID) REFERENCES ATTENDANCE(AttendanceID)
+);
+
+CREATE TABLE VIEW_PATIENT_DATA (
+    DoctorID INT,
+    PatientName VARCHAR(255),
+    FOREIGN KEY (DoctorID) REFERENCES DOCTOR(DoctorID),
+    FOREIGN KEY (PatientName) REFERENCES PATIENT_DATA(PatientName)
+);
+
+-- Insert Sample Data
+
+-- Sample data for OWNER table
+INSERT INTO OWNER (FirstName, LastName, Gender, BirthDate, Email, PhoneNumber, Address, About)
+VALUES ('John', 'Doe', 'Male', '1990-01-01', 'john.doe@email.com', '1234567890', '123 Main St', 'About John');
+
+-- Sample data for DOCTOR table
+INSERT INTO DOCTOR (FirstName, LastName, Gender, BirthDate, Email, PhoneNumber, Address, About)
+VALUES ('Dr. Jane', 'Smith', 'Female', '1985-05-15', 'jane.smith@email.com', '9876543210', '456 Oak St', 'About Dr. Jane');
+
+
+DELIMITER //
+CREATE FUNCTION GenerateID(
+    p_role INT,
+    p_suffix INT,
+    p_phone_suffix INT
+)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE generated_id INT;
+
+    IF p_role = 1 THEN
+        SET generated_id = CONCAT(1, LPAD(p_suffix, 2, '0'), LPAD(p_phone_suffix, 2, '0'));
+    ELSEIF p_role = 2 THEN
+        SET generated_id = CONCAT(2, p_suffix, LPAD(p_phone_suffix, 2, '0'));
+    ELSEIF p_role = 3 THEN
+        SET generated_id = CONCAT(3, p_suffix, LPAD(p_phone_suffix, 2, '0'));
+    ELSE
+        SET generated_id = NULL;
+    END IF;
+
+    RETURN CAST(generated_id AS SIGNED);
+END //
+DELIMITER ;
+SELECT GenerateID(1, 123, 45) AS GeneratedID;
