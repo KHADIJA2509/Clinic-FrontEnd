@@ -1,7 +1,7 @@
 CREATE DATABASE ClinicLDatabasee;
 USE ClinicLDatabasee;
 
--- Create the OWNER table
+-- Create the OWNER TABLE
 CREATE TABLE OWNER (
     OwnerID INT PRIMARY KEY AUTO_INCREMENT,
     FirstName VARCHAR(25),
