@@ -82,3 +82,4 @@ BorderBrush="{x:Null}" Background="{x:Null}" Foreground="Black" x:Name="btnExit"
 
     </Grid>
 </Window> 
+
