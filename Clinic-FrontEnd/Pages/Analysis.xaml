@@ -161,10 +161,8 @@
                         </lvc:PieChart.Series>
                     </lvc:PieChart>
                     <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Classification of Patients" Height="28" Width="212" FontSize="18" FontWeight="Bold" Margin="0,0,0,0"/>
-
                 </StackPanel>
             </materialDesign:Card>
-
         </StackPanel>
     </Grid>
 </Page>
