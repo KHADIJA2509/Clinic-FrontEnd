@@ -265,9 +265,5 @@ FontFamily="Verdana" FontSize="12" FontWeight="Bold">
                 </TextBox.Style>
             </TextBox>
         </StackPanel>
-
-
-
     </Grid>
-
 </Page>
