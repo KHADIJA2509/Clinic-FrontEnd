@@ -15,7 +15,7 @@
     <Grid Background="#F6F6F8">
 
         <DatePicker 
-Height="25" Width="100" 
+Height="25" Width="100"
 FontSize="10" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="450,230,0,0"
 Foreground="#FF2589B2" />
         <Button Content="+ Add Appointment" Foreground="White" Height="30" Width="168" FontSize="14" Background="#FF65B0D5" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50,230,0,0"/>
